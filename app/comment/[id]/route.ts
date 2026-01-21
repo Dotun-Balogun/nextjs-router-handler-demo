@@ -1,14 +1,15 @@
+import { NextRequest, NextResponse } from "next/server";
 import { comments } from "../data";
 
 
-export async function GET(
-    request:Request,
-    {params}:{params:Promise<{id:string}>}
-){
-    const {id} = await params
-    const comment = comments.find((comment)=>comment.id === parseInt(id))
-    return  Response.json(comment)
-}
+// export async function GET(
+//     request:Request,
+//     {params}:{params:Promise<{id:string}>}
+// ){
+//     const {id} = await params
+//     const comment = comments.find((comment)=>comment.id === parseInt(id))
+//     return  Response.json(comment)
+// }
 
 
 
@@ -51,4 +52,13 @@ export async function DELETE(
 
    comments.splice(index,1)
     return new Response(null,{status:204})
+}
+
+// Url Query route handler
+export async function GET(request:NextRequest){
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get("query");
+    
+    let filteredComments = query ? comments.filter((comment)=>comment.text.includes(query)):comments;
+    return NextResponse.json(filteredComments)
 }
