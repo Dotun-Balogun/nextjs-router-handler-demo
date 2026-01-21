@@ -12,6 +12,7 @@ export  async function POST(request:Request){
    const newComment ={
     id:comments.length + 1,
     text:comment.text,
+    likes:0
    }
    comments.push(newComment);
 
