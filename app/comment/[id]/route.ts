@@ -19,7 +19,8 @@ export async function PATCH(
   
   const {id} = await params;
   const body = await request.json();
-  const {text} = body
+
+  const {text,likes} = body
 //  check if comment exists
    const  index = comments.findIndex((comment)=>comment.id === parseInt(id))
    
@@ -27,7 +28,8 @@ export async function PATCH(
     return new Response(JSON.stringify({error:"not found"}) ,{status:404} )
    }
 
-   comments[index].text = text
+    comments[index].text = text
+    comments[index].likes = likes
     return Response.json(comments[index])
 
 }
