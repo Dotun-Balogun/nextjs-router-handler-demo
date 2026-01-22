@@ -9,5 +9,9 @@ export async function GET(request:NextRequest){
     // const headerList =await headers()
     // console.log(headerList.get("Authorization"))
 
-    return new Response('profile Api data')
+    return new Response('profile Api data', {
+        headers: {
+            'content-type': 'text/html'
+        }
+    })
 }
