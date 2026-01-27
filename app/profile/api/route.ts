@@ -9,9 +9,13 @@ export async function GET(request:NextRequest){
     // const headerList =await headers()
     // console.log(headerList.get("Authorization"))
 
+// to read cookie in our route handler use request parameter
+const theme = request.cookies.get('theme')
     return new Response('profile Api data', {
         headers: {
-            'content-type': 'text/html'
+            'content-type': 'text/html',
+            // setting cookie in route handler
+            'set-cookie':"theme=dark",
         }
     })
 }
