@@ -13,6 +13,7 @@ export async function GET(request:NextRequest){
 const theme = request.cookies.get('theme')
 const session = await cookies()
 session.set('sessionId','abc123') // setting cookie using next/headers
+console.log((await cookies()).get('sessionId'))
 
     console.log('theme cookie:',theme)
     return new Response('profile Api data', {
