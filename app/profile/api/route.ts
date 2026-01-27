@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { type NextRequest } from "next/server";
 
 export async function GET(request:NextRequest){
@@ -11,6 +11,10 @@ export async function GET(request:NextRequest){
 
 // to read cookie in our route handler use request parameter
 const theme = request.cookies.get('theme')
+const session = await cookies()
+session.set('sessionId','abc123') // setting cookie using next/headers
+
+    console.log('theme cookie:',theme)
     return new Response('profile Api data', {
         headers: {
             'content-type': 'text/html',
