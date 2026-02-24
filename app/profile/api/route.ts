@@ -16,7 +16,7 @@ session.set('sessionId','abc123') // setting cookie using next/headers
 console.log((await cookies()).get('sessionId'))
 
     console.log('theme cookie:',theme)
-    return new Response('profile Api data', {
+    return new Response('Profile Api data', {
         headers: {
             'content-type': 'text/html',
             // setting cookie in route handler
